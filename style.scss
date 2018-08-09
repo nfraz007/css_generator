@@ -1,0 +1,53 @@
+$values: 
+("0" "0em") 
+("1" "0.25em") ("2" "0.5em") ("3" "0.75em") ("4" "1em") 
+("5" "1.25em") ("6" "1.5em") ("7" "1.75em") ("8" "2em")
+("5x" "5px") ("10x" "10px") ("15x" "15px") ("20x" "20px") 
+("25x" "25px") ("30x" "30px") ("35x" "35px") ("40x" "40px") 
+("55x" "55px") ("60x" "60px") ("65x" "65px") ("70x" "70px")
+("75x" "75px") ("80x" "80px") ("95x" "95px") ("100x" "100px")
+("5xm" "-5px") ("10xm" "-10px") ("15xm" "-15px") ("20xm" "-20px") 
+("25xm" "-25px") ("30xm" "-30px") ("35xm" "-35px") ("40xm" "-40px") 
+("55xm" "-55px") ("60xm" "-60px") ("65xm" "-65px") ("70xm" "-70px")
+("75xm" "-75px") ("80xm" "-80px") ("95xm" "-95px") ("100xm" "-100px")
+("5p" "5%") ("10p" "10%") ("15p" "15%") ("20p" "20%") 
+("25p" "25%") ("30p" "30%") ("35p" "35%") ("40p" "40%") 
+("55p" "55%") ("60p" "60%") ("65p" "65%") ("70p" "70%")
+("75p" "75%") ("80p" "80%") ("95p" "95%") ("100p" "100%")
+("5pm" "-5%") ("10pm" "-10%") ("15pm" "-15%") ("20pm" "-20%") 
+("25pm" "-25%") ("30pm" "-30%") ("35pm" "-35%") ("40pm" "-40%") 
+("55pm" "-55%") ("60pm" "-60%") ("65pm" "-65%") ("70pm" "-70%")
+("75pm" "-75%") ("80pm" "-80%") ("95pm" "-95%") ("100pm" "-100%");
+
+@mixin padding(){
+	$attr: 
+	("p" "padding") 
+	("pt" "padding-top") ("pb" "padding-bottom") ("pl" "padding-left") ("pr" "padding-right");
+	
+	@include generating($attr);
+}
+
+@mixin margin(){
+	$attr: 
+	("m" "margin") 
+	("mt" "margin-top") ("mb" "margin-bottom") ("ml" "margin-left") ("mr" "margin-right");
+	
+	@include generating($attr);
+}
+
+@mixin generating($attr){
+	@each $attr_key, $attr_value in $attr{
+		@each $key, $value in $values{
+			.#{$attr_key}-#{$key}{
+				#{$attr_value}: #{$value} !important;
+			}
+		}
+	}
+}
+
+@mixin generate(){
+	@include padding();
+	@include margin();
+}
+
+@include generate()
